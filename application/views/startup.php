@@ -129,7 +129,7 @@
 						<a href="<?php echo base_url(); ?>social/session/facebook" class="connect-with-button account-sprites account-sprites-facebook" title="Facebook Connect"></a>
                                                 <a href="<?php echo base_url(); ?>social/session/google" class="connect-with-button marginleft13 account-sprites account-sprites-google" title="Google"></a>
 					</div>
-                                                        <font style="color: background">Don't have account?</font>  <a id="register" style="color: #31b0d5" href="#"> Signup here</a>
+                                                        <font style="color: background">Don't have account?</font>  <a id="register" style="color: #31b0d5" href="#signup"> Signup here</a>
 						</div>
                    <div id="signup" class="col-xs-12 well text-center" style="display: none">
                        <form action="welcome/signup" name="signup_t" method="post">
@@ -154,14 +154,8 @@
 								
                                                                     <input type="email" class="form-control" required oninvalid="this.setCustomValidity('Enter email Here')" oninput="setCustomValidity('')" name="email_id" id="email_id" />
 								</div>
-								<div class="form-group"> <label for="ypassout" style="color: black">Year of Passout <?php echo form_error('ypassout'); ?></label>
 								
-                                                                    <input type="text" class="form-control" required oninvalid="this.setCustomValidity('Enter year of passout Here')" oninput="setCustomValidity('')" name="ypassout" id="ypassout" />
-								</div>
-                                                             <div class="form-group">    <label for="phone_no" style="color: black">Mobile <?php echo form_error('phone_no'); ?></label>
-								
-                                                                    <input type="text" class="form-control" required oninvalid="this.setCustomValidity('Enter phone no Here')" oninput="setCustomValidity('')" name="phone_no" id="phone_no" />
-								</div> 
+                                                            
                                                                <div class="form-group">  <label for="password" style="color: black">Password <?php echo form_error('password'); ?></label>
 								
                                                                     <input type="password" class="form-control" required oninvalid="this.setCustomValidity('Enter passwd Here')" oninput="setCustomValidity('')" name="password" id="password" />
@@ -172,8 +166,18 @@
 								</div> 
 								<div class="form-group"> <label for="user_type" style="color: black">User type</label>
 								
-                                                                    <input type="radio" class="form-control" required oninvalid="this.setCustomValidity('Enter usertype Here')" oninput="setCustomValidity('')" name="user_type" id="user_type" />
+                                                      <select id="user_type" required oninvalid="this.setCustomValidity('Pick one Here')" oninput="setCustomValidity('')"  name="college_id" class="form-control" onChange='checkForPassOut(this)'>
+                                                                <option value="0">Select-one</option>
+                                                                <option value="1">Alumni</option>
+                                                                <option value="2">Student</option>
+                                                                <option value="3">Recruiter</option>
+                                                                 </select>
 								</div>  
+                                                          <div id ="div_ypassout"style="display:none" class="form-group"> <label for="ypassout" style="color: black">Year of Passout <?php echo form_error('ypassout'); ?></label>
+								
+                                                                    <input type="text" class="form-control" required oninvalid="this.setCustomValidity('Enter year of passout Here')" oninput="setCustomValidity('')" name="ypassout" id="ypassout" />
+							</div>
+                           
 								<!-- Signup Submit-->
                                                                <input type="submit" class="btn btn-primary btn-block" name='signup' value="Sign Up" />
 							</form>
@@ -764,6 +768,14 @@ $('#login_t').click(function(){{
 		}
 	});
 });
+function checkForPassOut(node){
+    if(node.value !== "3" && node.value !== "0" ){
+        $("#div_ypassout")[0].style.display = "block";
+    }
+    else{
+        $("#div_ypassout")[0].style.display = "none";
+    }
+}
 </script>
     <script src="<?php echo asset_url();?>js/classie.js"></script>
     <script src="<?php echo asset_url();?>js/cbpAnimatedHeader.js"></script>
